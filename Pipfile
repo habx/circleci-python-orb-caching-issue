@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+pytest = "7.0.0"
+pylint = "2.11"
+pycodestyle = "2.8"
+pytest-cov = "3.0"
+
+[requires]
+python_version = "3.8"

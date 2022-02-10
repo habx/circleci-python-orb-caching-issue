@@ -1,0 +1,7 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json": "/Users/clement/habx/devops-argo-workflow/*.yaml",
+        "file:///Users/clement/.vscode/extensions/atlassian.atlascode-2.10.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+        "https://json.schemastore.org/circleciconfig.json": "file:///Users/clement/habx/circleci-python-orb-cache-bug/.circleci/circleci.yml"
+    }
+}

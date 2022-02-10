@@ -1,0 +1,32 @@
+version: 2.1
+
+python-install-packages: &python-install-packages
+  pypi-cache: true
+  venv-cache: true
+  args: -d --ignore-pipfile
+
+jobs:
+  static-tests:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          <<: *python-install-packages
+      - run: pipenv run pylint $(find -name "*.py") && pipenv run pycodestyle $(find -name "*.py")
+
+  tests:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          <<: *python-install-packages
+      - run: PYTHONPATH=$(pwd) pipenv run pytest --cov-report=xml --cov=.
+
+orbs:
+  python: circleci/python@dev:alpha
+
+workflows:
+  tests:
+    jobs:
+      - tests
+      - static-tests
