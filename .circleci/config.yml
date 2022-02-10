@@ -22,6 +22,24 @@ jobs:
           <<: *python-install-packages
       - run: PYTHONPATH=$(pwd) pipenv run pytest --cov-report=xml --cov=.
 
+  checksum-test:
+    executor: python/default
+    steps:
+      - run: |
+          echo "go to cache" > cached_file.txt
+          echo "Hello World" > test.txt
+          ln -s "${PWD}"/test.txt "${PWD}"/test_s_linked.txt
+          ls -l
+      - save_cache:
+          key: from-file-{{ checksum "test.txt" }}
+          paths:
+            - cached_file.txt
+      - save_cache:
+          key: from-file-linked-{{ checksum "test_s_linked.txt" }}
+          paths:
+            - cached_file.txt            
+
+
 orbs:
   python: circleci/python@dev:alpha
 
@@ -30,3 +48,4 @@ workflows:
     jobs:
       - tests
       - static-tests
+      - checksum-test
