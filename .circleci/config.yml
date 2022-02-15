@@ -41,7 +41,7 @@ jobs:
 
 
 orbs:
-  python: circleci/python@dev:alpha
+  python: circleci/python@2.0.1
 
 workflows:
   tests:
